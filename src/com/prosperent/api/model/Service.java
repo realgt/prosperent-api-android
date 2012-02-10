@@ -4,18 +4,7 @@ import java.util.List;
 
 public class Service
 {
-	private String apiKey;
-
-	public String getApiKey()
-	{
-		return apiKey;
-	}
-
-	public void setApiKey(String apiKey)
-	{
-		this.apiKey = apiKey;
-	}
-
+	
 	private String countryCode;
 
 	private String coupons;
