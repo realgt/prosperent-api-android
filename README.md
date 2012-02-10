@@ -10,7 +10,7 @@ Requires INTERNET permission in your AndroidManifest.xml
 For now only supports product API
 
 
-!!Example usage (assuming you have saved your prosperent_api_key in strings
+Example usage (assuming you have saved your prosperent_api_key in strings
 
 ```java
 	String apiKey = getString(R.string.prosperent_api_key);
