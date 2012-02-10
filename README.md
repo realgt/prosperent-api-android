@@ -12,7 +12,7 @@ For now only supports product API
 
 !!Example usage
 
-<code>
+```java
 		ProsperentRequest request = new ProsperentRequest();
 		request.setQuery("race cars");
 		
@@ -26,7 +26,7 @@ For now only supports product API
 				//do something with the data
 			}
 		}
-</code>
+```
 
 !!TODO
 - implement callbacks to avoid UI thread wait!
