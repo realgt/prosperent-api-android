@@ -29,10 +29,11 @@ Example usage (assuming you have saved your prosperent_api_key in strings
 	}
 ```
 
-!!TODO
-- implement callbacks to avoid UI thread wait!
-- better logging
-- implement caching
-- merchant api
-- coupon api
+TODO
+=====
+* implement callbacks to avoid UI thread wait!
+* better logging
+* implement caching
+* merchant api
+* coupon api
 More documentation to follow
