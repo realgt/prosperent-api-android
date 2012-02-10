@@ -1,13 +1,19 @@
 prosperent-api-android
 ========================
 
-Provides a set of Java classes that represent the Prosperent API.  Performs network calls and parses response into objects.
+Provides a set of Java classes that represent the Prosperent API.  
 
 Requires INTERNET permission in your AndroidManifest.xml
 
 <uses-permission android:name="android.permission.INTERNET" />
 
 For now only supports product API
+
+### Features
+* Performs network calls in AsyncTask and parses response into objects 
+* Automatically sets Visitor IP to device IP address if not set manually
+* UrlEncodes the query field
+
 ### Setup
 Download the jar file from the Downloads section on GitHub
 [Download Jar] (https://github.com/downloads/realgt/prosperent-api-android/prosperent-api-android.jar)
@@ -22,7 +28,7 @@ Add Project dependencies to your Android project for those 3 jar files.
 * jackson-mapper-asl-1.9.4.jar
 
 ### Example usage 
-(assuming you have saved your prosperent_api_key in strings
+(assuming you have saved your prosperent_api_key in res/value/strings.xml)
 
 ```java
 	String apiKey = getString(R.string.prosperent_api_key);
