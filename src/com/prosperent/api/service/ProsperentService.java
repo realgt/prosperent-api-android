@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,15 +30,32 @@ public final class ProsperentService
 	
 	public String getProducts(String query)
 	{
-		final String serviceUrl = query;
-		new ServiceTask().execute(serviceUrl);
+		final String serviceUrl = BASE_URL + PRODUCTS_ENDPOINT + query;
+		ServiceTask st = new ServiceTask();
+		st.execute(serviceUrl);
+		try
+		{
+			//TODO: rework this with a callback to avoid UI thread waiting
+			responseJSON = st.get();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (ExecutionException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return responseJSON;
 	}
 
 	private static String getServiceData(String serviceUrl)
 	{
 		String responseData = "";
-		final AndroidHttpClient client = AndroidHttpClient.newInstance("android");
+		final AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
 		final HttpGet request = new HttpGet(serviceUrl);
 		try
 		{
@@ -74,8 +92,6 @@ public final class ProsperentService
 		}
 		catch (Exception e)
 		{
-			// Could provide a more explicit error message for IOException or
-			// IllegalStateException
 			request.abort();
 		}
 		finally

@@ -1,15 +1,18 @@
-package com.prosperent.api.model;
+package com.prosperent.api.service;
 
 import java.util.List;
 
-public class Service
+import com.prosperent.api.model.Error;
+import com.prosperent.api.model.Warnings;
+
+public abstract class ProsperentResponse
 {
 	
 	private String countryCode;
 
 	private String coupons;
 
-	private List<Data> data;
+//	private List<Data> data;
 
 	private List<Error> errors;
 
@@ -47,15 +50,15 @@ public class Service
 		this.coupons = coupons;
 	}
 
-	public List<Data> getData()
-	{
-		return this.data;
-	}
-
-	public void setData(List<Data> data)
-	{
-		this.data = data;
-	}
+//	public List<Data> getData()
+//	{
+//		return this.data;
+//	}
+//
+//	public void setData(List<Data> data)
+//	{
+//		this.data = data;
+//	}
 
 	public List<Error> getErrors()
 	{

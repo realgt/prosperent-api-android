@@ -1,7 +1,14 @@
 package com.prosperent.api.model;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
+/***
+ * Product 
+ *
+ */
 public class Product extends Data
 {
+	@JsonProperty("affiliate_url")
 	private String affiliate_url;
 
 	private String brand;
@@ -14,8 +21,10 @@ public class Product extends Data
 
 	private String description;
 
+	@JsonProperty("image_thumb_url")
 	private String image_thumb_url;
 
+	@JsonProperty("image_url")
 	private String image_url;
 
 	private String isbn;
@@ -26,6 +35,7 @@ public class Product extends Data
 
 	private String price;
 
+	@JsonProperty("price_sale")
 	private String price_sale;
 
 	private String productId;
@@ -34,12 +44,12 @@ public class Product extends Data
 
 	private String upc;
 
-	public String getAffiliate_url()
+	public String getAffiliateUrl()
 	{
 		return this.affiliate_url;
 	}
 
-	public void setAffiliate_url(String affiliate_url)
+	public void setAffiliateUrl(String affiliate_url)
 	{
 		this.affiliate_url = affiliate_url;
 	}
@@ -94,22 +104,22 @@ public class Product extends Data
 		this.description = description;
 	}
 
-	public String getImage_thumb_url()
+	public String getImageThumbUrl()
 	{
 		return this.image_thumb_url;
 	}
 
-	public void setImage_thumb_url(String image_thumb_url)
+	public void setImageThumbUrl(String image_thumb_url)
 	{
 		this.image_thumb_url = image_thumb_url;
 	}
 
-	public String getImage_url()
+	public String getImageUrl()
 	{
 		return this.image_url;
 	}
 
-	public void setImage_url(String image_url)
+	public void setImageUrl(String image_url)
 	{
 		this.image_url = image_url;
 	}
@@ -154,12 +164,12 @@ public class Product extends Data
 		this.price = price;
 	}
 
-	public String getPrice_sale()
+	public String getPriceSale()
 	{
 		return this.price_sale;
 	}
 
-	public void setPrice_sale(String price_sale)
+	public void setPriceSale(String price_sale)
 	{
 		this.price_sale = price_sale;
 	}

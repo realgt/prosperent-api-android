@@ -8,4 +8,5 @@ package com.prosperent.api.model;
  */
 public abstract class Data
 {
+	//TODO move common fields into here
 }
