@@ -8,9 +8,21 @@ Requires INTERNET permission in your AndroidManifest.xml
 <uses-permission android:name="android.permission.INTERNET" />
 
 For now only supports product API
+### Setup
+Download the jar file from the Downloads section on GitHub
+[Download Jar] (https://github.com/downloads/realgt/prosperent-api-android/prosperent-api-android.jar)
 
+Requires Jackson JSON parsing library (jackson core and mapper)
+[Jackson Download Link] (http://wiki.fasterxml.com/JacksonDownload)
 
-Example usage (assuming you have saved your prosperent_api_key in strings
+Add Project dependencies to your Android project for those 3 jar files.
+
+* prosperent-api-android.jar
+* jackson-core-asl-1.9.4.jar
+* jackson-mapper-asl-1.9.4.jar
+
+### Example usage 
+(assuming you have saved your prosperent_api_key in strings
 
 ```java
 	String apiKey = getString(R.string.prosperent_api_key);
