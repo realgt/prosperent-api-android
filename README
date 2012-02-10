@@ -27,6 +27,7 @@ For now only supports product API
 			}
 		}
 </code>
+
 !!TODO
 - implement callbacks to avoid UI thread wait!
 - better logging
