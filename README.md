@@ -1,4 +1,4 @@
-!prosperent-api-android
+prosperent-api-android
 
 
 Provides a set of Java classes that represent the Prosperent API.  Performs network calls and parses response into objects.
@@ -10,22 +10,23 @@ Requires INTERNET permission in your AndroidManifest.xml
 For now only supports product API
 
 
-!!Example usage
+!!Example usage (assuming you have saved your prosperent_api_key in strings
 
 ```java
-		ProsperentRequest request = new ProsperentRequest();
-		request.setQuery("race cars");
-		
-		ProsperentProductResponse response = ProsperentAPI.getProsperentProductResponse(getString(R.string.prosperent_api_key), request);
-		if (response != null)
+	String apiKey = getString(R.string.prosperent_api_key);
+	ProsperentRequest request = new ProsperentRequest();
+	request.setQuery("race cars");
+	
+	ProsperentProductResponse response = ProsperentAPI.getProsperentProductResponse(apiKey, request);
+	if (response != null)
+	{
+		for (Product product : response.getData())
 		{
-			for (Product product : response.getData())
-			{
-				String productDesc = product.getDescription();
-				String thumbnailUrl = product.getImageThumbUrl();
-				//do something with the data
-			}
+			String productDesc = product.getDescription();
+			String thumbnailUrl = product.getImageThumbUrl();
+			//do something with the data
 		}
+	}
 ```
 
 !!TODO
