@@ -24,6 +24,8 @@ public class ProsperentRequest
 	private String enableQuerySuggestion;
 	private String page;
 	private String limits;
+	private String extendedQuery;
+	private String extendedSortMode;
 	
 	@Override
 	public String toString()
@@ -50,6 +52,8 @@ public class ProsperentRequest
 		if (enableQuerySuggestion != null) sb.append("&enableQuerySuggestion="+enableQuerySuggestion);
 		if (page != null) sb.append("&page="+page);
 		if (limits != null) sb.append("&limits="+limits);
+		if (extendedQuery != null) sb.append("&extendedQuery="+URLEncoder.encode(extendedQuery));
+		if (extendedSortMode != null) sb.append("&extendedSortMode="+extendedSortMode);
 
 
 		return sb.toString();
@@ -214,6 +218,26 @@ public class ProsperentRequest
 	public void setLimits(String limits)
 	{
 		this.limits = limits;
+	}
+
+	public String getExtendedQuery()
+	{
+		return extendedQuery;
+	}
+
+	public void setExtendedQuery(String extendedQuery)
+	{
+		this.extendedQuery = extendedQuery;
+	}
+
+	public String getExtendedSortMode()
+	{
+		return extendedSortMode;
+	}
+
+	public void setExtendedSortMode(String extendedSortMode)
+	{
+		this.extendedSortMode = extendedSortMode;
 	}
 	
 }

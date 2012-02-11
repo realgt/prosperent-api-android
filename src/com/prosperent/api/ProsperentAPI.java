@@ -43,7 +43,11 @@ public class ProsperentAPI
 			String json = service.getProducts(String.format("?api_key=%s%s", apiKey, request.toString()));
 			try
 			{
-				return mapper.readValue(json, ProsperentProductResponse.class);
+				if (json != null)
+				{
+					return mapper.readValue(json, ProsperentProductResponse.class);	
+				}
+				
 			}
 			catch (JsonParseException e)
 			{
@@ -71,8 +75,11 @@ public class ProsperentAPI
 	private static boolean isValidRequest(String apiKey, ProsperentRequest request)
 	{
 		if (apiKey == null || apiKey == "") { return false; }
-		if ((request.getQuery() == null || "".equals(request.getQuery()) 
-				&& (request.getFilter() == null || "".equals(request.getFilter())))) 
+		if (
+				(request.getQuery() == null || "".equals(request.getQuery()))
+				&& (request.getExtendedQuery() == null || "".equals(request.getExtendedQuery()))
+				&& (request.getFilter() == null || "".equals(request.getFilter()))
+			)
 		{ return false; }
 		
 		if (request.getVisitorIP() == null || "".equals(request.getVisitorIP()))
