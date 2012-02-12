@@ -23,7 +23,7 @@ public class ProsperentRequest
 	private String enableFacets;
 	private String enableQuerySuggestion;
 	private String page;
-	private String limits;
+	private String limit;
 	private String extendedQuery;
 	private String extendedSortMode;
 	
@@ -51,7 +51,7 @@ public class ProsperentRequest
 		if (enableFacets != null) sb.append("&enableFacets="+enableFacets);
 		if (enableQuerySuggestion != null) sb.append("&enableQuerySuggestion="+enableQuerySuggestion);
 		if (page != null) sb.append("&page="+page);
-		if (limits != null) sb.append("&limits="+limits);
+		if (limit != null) sb.append("&limit="+limit);
 		if (extendedQuery != null) sb.append("&extendedQuery="+URLEncoder.encode(extendedQuery));
 		if (extendedSortMode != null) sb.append("&extendedSortMode="+extendedSortMode);
 
@@ -211,13 +211,13 @@ public class ProsperentRequest
 	{
 		this.page = page;
 	}
-	public String getLimits()
+	public String getLimit()
 	{
-		return limits;
+		return limit;
 	}
-	public void setLimits(String limits)
+	public void setLimit(String limit)
 	{
-		this.limits = limits;
+		this.limit = limit;
 	}
 
 	public String getExtendedQuery()
