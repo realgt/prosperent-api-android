@@ -1,17 +1,22 @@
 package com.prosperent.api.service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+
+import com.prosperent.api.ProsperentAPI.CallBack;
 
 /***
  * Performs calls to prosperent webservices and parses JSON response
@@ -22,31 +27,20 @@ public final class ProsperentService
 	public static final String BASE_URL = "http://api.prosperent.com";
 
 	public static final String PRODUCTS_ENDPOINT = "/api/search";
-	
-	private String responseJSON;
-	
-	public String getProducts(String query)
+
+	private static ObjectMapper mapper = new ObjectMapper();
+
+	private static enum ProsperentResponseType
+	{
+		PRODUCT, COUPON, MERCHANT;
+	}
+
+	// private String responseJSON;
+	public void getProducts(String query, CallBack callback)
 	{
 		final String serviceUrl = BASE_URL + PRODUCTS_ENDPOINT + query;
-		ServiceTask st = new ServiceTask();
+		ServiceTask st = new ServiceTask(callback, ProsperentResponseType.PRODUCT);
 		st.execute(serviceUrl);
-		try
-		{
-			//TODO: rework this with a callback to avoid UI thread waiting
-			responseJSON = st.get();
-		}
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (ExecutionException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return responseJSON;
 	}
 
 	private static String getServiceData(String serviceUrl)
@@ -103,6 +97,16 @@ public final class ProsperentService
 
 	public class ServiceTask extends AsyncTask<String, Void, String>
 	{
+		private CallBack callback;
+
+		private ProsperentResponseType responseType;
+
+		public ServiceTask(CallBack callback, ProsperentResponseType responseType)
+		{
+			this.callback = callback;
+			this.responseType = responseType;
+		}
+
 		protected String doInBackground(String... serviceUrl)
 		{
 			return ProsperentService.getServiceData(serviceUrl[0]);
@@ -114,7 +118,33 @@ public final class ProsperentService
 			{
 				result = null;
 			}
-			responseJSON = result;
+			try
+			{
+				switch (responseType)
+				{
+				case PRODUCT:
+					callback.onComplete(mapper.readValue(result, ProsperentProductResponse.class));
+					break;
+				case COUPON:
+					//TODO: add support for coupon API
+					break;
+				case MERCHANT:
+					//TODO: add support for merchants API
+					break;
+				}
+			}
+			catch (JsonParseException e)
+			{
+				e.printStackTrace();
+			}
+			catch (JsonMappingException e)
+			{
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }

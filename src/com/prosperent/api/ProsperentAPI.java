@@ -1,20 +1,16 @@
 package com.prosperent.api;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
-
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import android.util.Log;
 
 import com.prosperent.api.model.Product;
 import com.prosperent.api.service.ProsperentProductResponse;
 import com.prosperent.api.service.ProsperentRequest;
+import com.prosperent.api.service.ProsperentResponse;
 import com.prosperent.api.service.ProsperentService;
 
 /***
@@ -28,41 +24,32 @@ public class ProsperentAPI
 {
 	private static final String TAG = null;
 
-	private static ObjectMapper mapper = new ObjectMapper();
+//	private static ObjectMapper mapper = new ObjectMapper();
+	
+	 /**
+     * Interface definition for a callback to be invoked when a view is clicked.
+     */
+    public interface CallBack {
+        /**
+         * Called when a response has been received from Prosperent.
+         *
+         * @param response The ProsperentResponse that was received.
+         */
+        void onComplete(ProsperentResponse response);
+    }
 
 	/***
 	 * Returns a {@link ProsperentProductResponse} with a list of
 	 * {@link Product} objects in {@link ProsperentProductResponse#getData()
 	 * getData()}
 	 */
-	public static ProsperentProductResponse getProsperentProductResponse(String apiKey, ProsperentRequest request)
+	public static void getProsperentProductResponse(String apiKey, ProsperentRequest request, CallBack callBack)
 	{
 		if (isValidRequest(apiKey, request))
 		{
 			ProsperentService service = new ProsperentService();
-			String json = service.getProducts(String.format("?api_key=%s%s", apiKey, request.toString()));
-			try
-			{
-				if (json != null)
-				{
-					return mapper.readValue(json, ProsperentProductResponse.class);	
-				}
-				
-			}
-			catch (JsonParseException e)
-			{
-				Log.e(TAG, e.toString());
-			}
-			catch (JsonMappingException e)
-			{
-				Log.e(TAG, e.toString());
-			}
-			catch (IOException e)
-			{
-				Log.e(TAG, e.toString());
-			}
+			service.getProducts(String.format("?api_key=%s%s", apiKey, request.toString()), callBack);
 		}
-		return null;
 	}
 
 	/***
@@ -70,7 +57,7 @@ public class ProsperentAPI
 	 * 
 	 * @param apiKey
 	 * @param request
-	 * @return
+	 * @return true if request is valid, false otherwise
 	 */
 	private static boolean isValidRequest(String apiKey, ProsperentRequest request)
 	{
@@ -90,6 +77,10 @@ public class ProsperentAPI
 		return true;
 	}
 
+	/***
+	 * Loops over enumerated {@link NetworkInterface NetworkInterfaces} and identifies non loopback address
+	 * @return {@link InetAddress#getHostAddress().toString()} or defaults to "127.0.0.1"
+	 */
 	public static String getLocalIpAddress()
 	{
 		try
