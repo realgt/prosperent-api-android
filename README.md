@@ -56,9 +56,10 @@ Add Project dependencies to your Android project for those 3 jar files.
 
 TODO
 =====
-* implement callbacks to avoid UI thread wait!
 * better logging
 * implement caching
 * merchant api
 * coupon api
+
+
 More documentation to follow
