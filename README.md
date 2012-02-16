@@ -42,7 +42,7 @@ Add Project dependencies to your Android project for those 3 jar files.
 		{
 			if (response != null)
 			{
-				for (Product product : response.getData())
+				for (Product product : ((ProsperentProductResponse) response).getData();)
 				{
 					String productDesc = product.getDescription();
 					String thumbnailUrl = product.getImageThumbUrl();
