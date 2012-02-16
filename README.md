@@ -35,16 +35,23 @@ Add Project dependencies to your Android project for those 3 jar files.
 	ProsperentRequest request = new ProsperentRequest();
 	request.setQuery("race cars");
 	
-	ProsperentProductResponse response = ProsperentAPI.getProsperentProductResponse(apiKey, request);
-	if (response != null)
+	ProsperentAPI.getProsperentProductResponse(apiKey, request, new ProsperentAPI.CallBack()
 	{
-		for (Product product : response.getData())
+		@Override
+		public void onComplete(ProsperentResponse response)
 		{
-			String productDesc = product.getDescription();
-			String thumbnailUrl = product.getImageThumbUrl();
-			//do something with the data
+			if (response != null)
+			{
+				for (Product product : response.getData())
+				{
+					String productDesc = product.getDescription();
+					String thumbnailUrl = product.getImageThumbUrl();
+					//do something with the data
+				}
+			}
 		}
 	}
+
 ```
 
 TODO
