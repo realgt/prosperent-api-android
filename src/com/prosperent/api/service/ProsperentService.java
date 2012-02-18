@@ -80,6 +80,7 @@ public final class ProsperentService
 					entity.consumeContent();
 				}
 			}
+			client.close();
 		}
 		catch (Exception e)
 		{
