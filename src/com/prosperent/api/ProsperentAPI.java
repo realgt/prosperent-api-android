@@ -6,8 +6,6 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
-import org.codehaus.jackson.util.ByteArrayBuilder;
-
 import android.util.Log;
 
 import com.prosperent.api.model.Product;
