@@ -10,6 +10,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -136,15 +137,15 @@ public final class ProsperentService
 			}
 			catch (JsonParseException e)
 			{
-				e.printStackTrace();
+				callback.onComplete(null);
 			}
 			catch (JsonMappingException e)
 			{
-				e.printStackTrace();
+				callback.onComplete(null);
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				callback.onComplete(null);
 			}
 		}
 	}
