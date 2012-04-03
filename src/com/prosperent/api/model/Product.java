@@ -3,8 +3,8 @@ package com.prosperent.api.model;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /***
- * Product 
- *
+ * Product
+ * 
  */
 public class Product extends Data
 {
@@ -20,9 +20,6 @@ public class Product extends Data
 	private String currency;
 
 	private String description;
-
-	@JsonProperty("image_thumb_url")
-	private String image_thumb_url;
 
 	@JsonProperty("image_url")
 	private String image_url;
@@ -41,6 +38,16 @@ public class Product extends Data
 	private String productId;
 
 	private Number sales;
+
+	private Number groupCount;
+
+	private String maxPrice;
+
+	private String maxPriceSale;
+
+	private String minPrice;
+
+	private String minPriceSale;
 
 	private String upc;
 
@@ -104,14 +111,14 @@ public class Product extends Data
 		this.description = description;
 	}
 
-	public String getImageThumbUrl()
+	public Number getGroupCount()
 	{
-		return this.image_thumb_url;
+		return this.groupCount;
 	}
 
-	public void setImageThumbUrl(String image_thumb_url)
+	public void setGroupCount(Number groupCount)
 	{
-		this.image_thumb_url = image_thumb_url;
+		this.groupCount = groupCount;
 	}
 
 	public String getImageUrl()
@@ -144,6 +151,26 @@ public class Product extends Data
 		this.keyword = keyword;
 	}
 
+	public String getMaxPrice()
+	{
+		return this.maxPrice;
+	}
+
+	public void setMaxPrice(String maxPrice)
+	{
+		this.maxPrice = maxPrice;
+	}
+
+	public String getMaxPriceSale()
+	{
+		return this.maxPriceSale;
+	}
+
+	public void setMaxPriceSale(String maxPriceSale)
+	{
+		this.maxPriceSale = maxPriceSale;
+	}
+
 	public String getMerchant()
 	{
 		return this.merchant;
@@ -152,6 +179,26 @@ public class Product extends Data
 	public void setMerchant(String merchant)
 	{
 		this.merchant = merchant;
+	}
+
+	public String getMinPrice()
+	{
+		return this.minPrice;
+	}
+
+	public void setMinPrice(String minPrice)
+	{
+		this.minPrice = minPrice;
+	}
+
+	public String getMinPriceSale()
+	{
+		return this.minPriceSale;
+	}
+
+	public void setMinPriceSale(String minPriceSale)
+	{
+		this.minPriceSale = minPriceSale;
 	}
 
 	public String getPrice()
