@@ -27,6 +27,8 @@ public abstract class ProsperentResponse
 	private Number totalRecords;
 
 	private Number totalRecordsFound;
+	
+	private Number totalRecordsAvailable;
 
 	private List<Warnings> warnings;
 
@@ -128,6 +130,16 @@ public abstract class ProsperentResponse
 	public void setTotalRecordsFound(Number totalRecordsFound)
 	{
 		this.totalRecordsFound = totalRecordsFound;
+	}
+	
+	public Number getTotalRecordsAvailable()
+	{
+		return this.totalRecordsAvailable;
+	}
+
+	public void setTotalRecordsAvailable(Number totalRecordsAvailable)
+	{
+		this.totalRecordsAvailable = totalRecordsAvailable;
 	}
 
 	public List<Warnings> getWarnings()
